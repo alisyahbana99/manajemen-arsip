@@ -3,6 +3,7 @@ Website - Sistem Manajemen Arsip
 Proyek ini dibuat untuk memenuhi kebutuhan pengembangan aplikasi web dan sistem manajemen arsip.
 
 ## Fitur Utama (Full CRUD)
+![Tampilan Aplikasi](screenshot.png)
 * **Create:** Mengunggah file dokumen (PDF/Excel) dan menyimpannya ke database.
 * **Read:** Menampilkan daftar arsip beserta kategori dan waktu unggah secara *real-time*.
 * **Update:** Mengubah kategori arsip melalui *pop-up modal* yang interaktif.
