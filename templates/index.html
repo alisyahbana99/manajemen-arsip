@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArsipKu - Manajemen Arsip</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 ArsipKu</h1>
+            <p>Sistem Manajemen Arsip Finance & Accounting</p>
+        </header>
+
+        <!-- Form Upload -->
+        <div class="card">
+            <h2>Upload Arsip Baru</h2>
+            <!-- Pesan Notifikasi -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="alert">{{ messages[0] }}</div>
+              {% endif %}
+            {% endwith %}
+
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Pilih File (PDF/Excel):</label>
+                    <input type="file" name="file" required accept=".pdf,.xls,.xlsx">
+                </div>
+                <div class="form-group">
+                    <label>Kategori:</label>
+                    <select name="kategori" required>
+                        <option value="Invoice">Invoice</option>
+                        <option value="Laporan Keuangan">Laporan Keuangan</option>
+                        <option value="Slip Gaji">Slip Gaji</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Upload Arsip</button>
+            </form>
+        </div>
+
+        <!-- Tabel Daftar Arsip -->
+        <div class="card">
+            <h2>Daftar Arsip Tersimpan</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama File</th>
+                        <th>Kategori</th>
+                        <th>Tanggal Upload</th>
+                        <th>Aksi</th> <!-- Tambahan Kolom Aksi -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for arsip in arsip_list %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ arsip['nama_file'] }}</td>
+                        <td><span class="badge" id="badge-{{ arsip['id'] }}">{{ arsip['kategori'] }}</span></td>
+                        <td>{{ arsip['tanggal_upload'] }}</td>
+                        <td>
+                            <!-- Tombol Hapus -->
+                            <form action="/delete/{{ arsip['id'] }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus file ini?');">
+                                <button type="submit" class="btn-hapus">Hapus</button>
+                            </form>
+                            
+                            <!-- Tombol Edit (Memanggil fungsi JS) -->
+                           <button type="button" class="btn-edit" onclick="editKategori({{ arsip['id'] }}, '{{ arsip['kategori'] }}')">Edit</button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Belum ada arsip yang di-upload.</td>
+                    </tr>
+                    {% endfor %}
+                        <!-- ... kode sebelumnya ... -->
+    </div> <!-- Penutup container -->
+
+    <!-- TAMBAHAN: Modal Edit Kategori -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Edit Kategori Arsip</h3>
+            <form id="editForm" method="POST">
+                <div class="form-group">
+                    <label>Pilih Kategori Baru:</label>
+                    <select name="kategori" id="editKategoriSelect" required>
+                        <option value="Invoice">Invoice</option>
+                        <option value="Laporan Keuangan">Laporan Keuangan</option>
+                        <option value="Slip Gaji">Slip Gaji</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div style="text-align: right; margin-top: 20px;">
+                    <button type="button" class="btn-batal" onclick="tutupModal()">Batal</button>
+                    <button type="submit" class="btn">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
