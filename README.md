@@ -1,19 +1,19 @@
-# 📁 ArsipKu - Sistem Manajemen Arsip Terpusat
+Website - Sistem Manajemen Arsip 
 
-Proyek ini dibuat untuk memenuhi kebutuhan pengembangan aplikasi web dan sistem manajemen arsip, khususnya untuk mendukung operasional tim Finance & Accounting. 
+Proyek ini dibuat untuk memenuhi kebutuhan pengembangan aplikasi web dan sistem manajemen arsip.
 
-## 🚀 Fitur Utama (Full CRUD)
+## Fitur Utama (Full CRUD)
 * **Create:** Mengunggah file dokumen (PDF/Excel) dan menyimpannya ke database.
 * **Read:** Menampilkan daftar arsip beserta kategori dan waktu unggah secara *real-time*.
 * **Update:** Mengubah kategori arsip melalui *pop-up modal* yang interaktif.
 * **Delete:** Menghapus data arsip dari database sekaligus menghapus file fisiknya dari server.
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 * **Backend:** Python (Flask)
 * **Database:** SQL (SQLite)
 * **Frontend:** HTML5, CSS3, Vanilla JavaScript
 
-## ⚙️ Cara Menjalankan Secara Lokal
+## Cara Menjalankan Secara Lokal
 1. Clone repository ini: `git clone https://github.com/alisyahbana99/manajemen-arsip.git`
 2. Masuk ke folder: `cd manajemen-arsip`
 3. Buat virtual environment: `python -m venv venv`
